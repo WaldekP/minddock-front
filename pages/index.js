@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Nav from '../components/nav'
 import axios from 'axios'
+import fetch from 'isomorphic-unfetch';
 
-const Home = () => {
-  const [psychologists, storePsychologists ] = useState([])
-  useEffect(() => {
-      axios.get('https://minddock-be.herokuapp.com/psychologists')
-          .then((response) => {
-              // handle success
-              storePsychologists(response.data);
-          })
-  })
+const Home = ({psychologists}) => {
+  // const [psychologists, storePsychologists ] = useState([])
+  // useEffect(() => {
+  //     axios.get('https://minddock-be.herokuapp.com/psychologists')
+  //         .then((response) => {
+  //             // handle success
+  //             storePsychologists(response.data);
+  //         })
+  // })
   return (
       <div>
           <Head>
@@ -78,6 +79,13 @@ const Home = () => {
     `}</style>
       </div>
   )
+}
+
+Home.getInitialProps = async () => {
+    const psychologistsList = await fetch('https://minddock-be.herokuapp.com/psychologists');
+    return {
+        psychologists: await psychologistsList.json()
+    }
 }
 
 
