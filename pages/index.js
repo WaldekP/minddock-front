@@ -23,7 +23,7 @@ const Home = () => {
 
           <div className="hero">
               <h1 className="title">Witaj na MindDock</h1>
-              <h3>Tutaj znajdziesz listę psychologów dostępnych na platformie</h3>
+              <h3>Tutaj znajdziesz listę najlepszych psychologów dostępnych na platformie</h3>
               <ul>
                   {psychologists.map(psychologist => <li>{psychologist.name} {psychologist.surname}</li>)}
               </ul>
