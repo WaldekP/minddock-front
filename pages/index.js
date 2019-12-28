@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Nav from '../components/nav'
 import axios from 'axios'
 
 const Home = () => {
+  const [psychologists, storePsychologists ] = useState([])
   useEffect(() => {
-      axios.get('http://localhost:2000/psychologists')
+      axios.get('https://minddock-be.herokuapp.com/psychologists')
           .then((response) => {
               // handle success
-              console.log('response',response);
+              storePsychologists(response.data);
           })
   })
   return (
@@ -21,28 +22,11 @@ const Home = () => {
           <Nav />
 
           <div className="hero">
-              <h1 className="title">Welcome to Next.js!</h1>
-              <p className="description">
-                  To get started, edit <code>pages/index.js</code> and save to reload.
-              </p>
+              <h1 className="title">Witaj na MindDock</h1>
+              <ul>
+                  {psychologists.map(psychologist => <li>{psychologist.name} {psychologist.surname}</li>)}
+              </ul>
 
-              <div className="row">
-                  <a href="https://nextjs.org/docs" className="card">
-                      <h3>Documentation &rarr;</h3>
-                      <p>Learn more about Next.js in the documentation.</p>
-                  </a>
-                  <a href="https://nextjs.org/learn" className="card">
-                      <h3>Next.js Learn &rarr;</h3>
-                      <p>Learn about Next.js by following an interactive tutorial!</p>
-                  </a>
-                  <a
-                      href="https://github.com/zeit/next.js/tree/master/examples"
-                      className="card"
-                  >
-                      <h3>Examples &rarr;</h3>
-                      <p>Find other example boilerplates on the Next.js GitHub.</p>
-                  </a>
-              </div>
           </div>
 
           <style jsx>{`
