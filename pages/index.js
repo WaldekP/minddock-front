@@ -75,7 +75,7 @@ const Home = ({psychologists}) => {
 Home.getInitialProps = async () => {
     const psychologistsList = await fetch('https://minddock-be.herokuapp.com/psychologists');
     return {
-        psychologists: await psychologistsList.json()
+        psychologists: await psychologistsList.json(),
     }
 }
 
