@@ -6,9 +6,7 @@ import { getAppUrl } from '../common/api';
 import { api } from '../common/api';
 import PropTypes from 'prop-types';
 
-// const Home = ({ psychologists }) => {
-const Home = () => {
-  // const Home = () => {
+const Home = ({ psychologists }) => {
 
   useEffect(() => {
     api
@@ -30,11 +28,11 @@ const Home = () => {
           Znajdź psychoterapeute dla siebie
         </h3>
         <ul>
-          {/*{psychologists.map(psychologist => (*/}
-          {/*  <li>*/}
-          {/*    {psychologist.name} {psychologist.surname}*/}
-          {/*  </li>*/}
-          {/*))}*/}
+          {psychologists.map(psychologist => (
+            <li>
+              {psychologist.name} {psychologist.surname}
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -91,15 +89,15 @@ Home.propTypes = {
   psychologists: PropTypes.array,
 };
 
-// Home.getInitialProps = async ({ req }) => {
-//   console.log('bla bla bla', getAppUrl(req));
-//   const psychologistsList = await fetch(
-//     `${getAppUrl(req) || ''}/api/psychologists`
-//     // `https://minddock-be.herokuapp.com/psychologists`
-//   );
-//   return {
-//     psychologists: await psychologistsList.json(),
-//   };
-// };
+Home.getInitialProps = async ({ req }) => {
+  console.log('bla bla bla', getAppUrl(req));
+  const psychologistsList = await fetch(
+    `${getAppUrl(req) || ''}/api/psychologists`
+    // `https://minddock-be.herokuapp.com/psychologists`
+  );
+  return {
+    psychologists: await psychologistsList.json(),
+  };
+};
 
 export default Home;
