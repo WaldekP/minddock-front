@@ -27,7 +27,7 @@ const Home = () => {
       <div className="hero">
         <h1 className="example">Witaj na MindDock</h1>
         <h3>
-          Twój psycholog pozwoli Ci znaleźć najlepszych psychologów online
+          Znajdź psychoterapeute dla siebie
         </h3>
         <ul>
           {/*{psychologists.map(psychologist => (*/}
