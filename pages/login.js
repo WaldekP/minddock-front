@@ -1,35 +1,69 @@
-import React  from 'react'
-import Head from 'next/head'
-import Nav from '../components/nav'
+import React, { useReducer} from 'react';
+import Head from 'next/head';
+import Nav from '../components/nav';
 import axios from 'axios';
-import fetch from 'isomorphic-unfetch';
-import { useRouter } from 'next/router'
-
+import { useRouter } from 'next/router';
+import { inputReducer } from '../common/reducers';
+import { handleInput } from '../common/utils';
+import { useAuth } from '../common/hooks';
 
 const Login = () => {
-    const router = useRouter()
+  const router = useRouter();
 
-    return (
-        <div>
-            <Head>
-                <title>Home</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+  const api = axios.create({
+    withCredentials: true,
+  });
 
-            <Nav />
+  const [data, dispatch] = useReducer(inputReducer, {
+    email: '',
+    password: '',
+  });
 
-            <div>
-                <input/>
-                <input/>
-                <button onClick={() => axios.post('https://minddock-be.herokuapp.com/login')
-                    .then(() => {
-                        router.push('/profile')
-                    })}>Zaloguj sie</button>
-            </div>
+  // useEffect(() => {
+  //   axios.get('http://localhost:2000/getcsrftoken').then(
+  //     response => {
+  //       axios.defaults.headers.common['X-CSRF-TOKEN'] = console.log('response.data.csrfToken', response.data.csrfToken) || response.data.csrfToken;
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }, []);
 
-        </div>
-    )
-}
+  useAuth(api);
 
+  return (
+    <div>
+      <Head>
+        <title>Home</title>
+        <link href="/favicon.ico" rel="icon" />
+      </Head>
 
-export default Login
+      <Nav />
+
+      <div>
+        <input
+          name="email"
+          onChange={e => handleInput(e, dispatch)}
+          value={data.email}
+        />
+        <input
+          name="password"
+          onChange={e => handleInput(e, dispatch)}
+          value={data.password}
+        />
+        <button
+          onClick={() => {
+            api.post(`http://localhost:2000/login`, data).then(() => {
+              router.push('/profile');
+            });
+          }}
+        >
+          Zaloguj sie
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
