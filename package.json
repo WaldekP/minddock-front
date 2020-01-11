@@ -1,11 +1,17 @@
 {
-  "name": "minddock-front",
+  "author": "Waldek Pieniak",
+  "description": "",
+  "main": "index.js",
+  "name": "Twojpsycholog",
   "version": "0.1.0",
+  "engines": {
+    "node": "10.16.3"
+  },
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon server.js -p $PORT",
+    "dev": "cross-env NODE_ENV=development nodemon server.js -p 4000",
     "build": "next build",
-    "start": "NODE_ENV=production node server/server.js -p $PORT"
+    "start": "NODE_ENV=production node server/server.js -p 4000"
   },
   "dependencies": {
     "axios": "^0.19.0",
