@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Nav from '../components/nav';
 import fetch from 'isomorphic-unfetch';
 import { getAppUrl } from '../common/api';
+import { api } from '../common/api';
 import PropTypes from 'prop-types';
 
-// const Home = ( ) => {
-const Home = ( ) => {
-// const Home = ({ psychologists }) => {
+// const Home = ({psychologists}) => {
+const Home = () => {
+
+  // useEffect(() => {
+  //   api.get('https://minddock-be.herokuapp.com/psychologists').then(result => console.log('res', result.data))
+  // })
   return (
     <div>
       <Head>
@@ -86,8 +90,10 @@ Home.propTypes = {
 };
 
 // Home.getInitialProps = async ({ req }) => {
+//   console.log('bla bla bla', getAppUrl(req))
 //   const psychologistsList = await fetch(
 //     `${getAppUrl(req) || ''}/api/psychologists`
+//     // `https://minddock-be.herokuapp.com/psychologists`
 //   );
 //   return {
 //     psychologists: await psychologistsList.json(),
