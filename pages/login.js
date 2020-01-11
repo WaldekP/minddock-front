@@ -54,7 +54,7 @@ const Login = () => {
         />
         <button
           onClick={() => {
-            api.post(`http://localhost:2000/login`, data).then(() => {
+            api.post(`/api/login`, data).then(() => {
               router.push('/profile');
             });
           }}

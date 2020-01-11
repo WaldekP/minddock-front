@@ -28,7 +28,7 @@ const Profile = () => {
           <button
             onClick={() =>
               api
-                .post(`http://localhost:2000/login/logout`)
+                .post(`/api/login/logout`)
                 .then(() => router.push('/login'))
             }
           >
