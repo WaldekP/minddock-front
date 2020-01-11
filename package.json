@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development node server.js -p $PORT",
+    "dev": "cross-env NODE_ENV=development nodemon server.js -p $PORT",
     "build": "next build",
     "start": "NODE_ENV=production node server/server.js -p $PORT"
   },
@@ -28,6 +28,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
+    "nodemon": "^2.0.2",
     "prettier": "^1.19.1"
   }
 }

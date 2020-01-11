@@ -2,7 +2,9 @@ import React from 'react';
 import Head from 'next/head';
 import Nav from '../components/nav';
 import fetch from 'isomorphic-unfetch';
+import { getAppUrl } from '../common/api';
 
+// const Home = ( ) => {
 const Home = ({ psychologists }) => {
   return (
     <div>
@@ -79,14 +81,9 @@ const Home = ({ psychologists }) => {
 };
 
 Home.getInitialProps = async ({ req }) => {
-  const host = req
-    ? req.headers['x-forwarded-host'] || req.headers.host
-    : window.location.host;
-
-  const proto = process.env.NODE_ENV === 'development' ? 'http' : 'https'
-
-  const url = `${proto}://${host}`;
-  const psychologistsList = await fetch(`${url || ''}/api/psychologists`);
+  const psychologistsList = await fetch(
+    `${getAppUrl(req) || ''}/api/psychologists`
+  );
   return {
     psychologists: await psychologistsList.json(),
   };

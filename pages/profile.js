@@ -1,10 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
 import Nav from '../components/nav';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useAuth } from '../common/hooks';
-import { api, API_URL } from '../common/api';
+import { api } from '../common/api';
 
 const Profile = () => {
   const router = useRouter();
@@ -27,9 +26,7 @@ const Profile = () => {
         {psychologist && (
           <button
             onClick={() =>
-              api
-                .post(`/api/login/logout`)
-                .then(() => router.push('/login'))
+              api.post(`/api/login/logout`).then(() => router.push('/login'))
             }
           >
             Wyloguj

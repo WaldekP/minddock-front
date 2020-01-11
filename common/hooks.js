@@ -7,7 +7,7 @@ export const useAuth = api => {
 
   useEffect(() => {
     api
-      .get('http://localhost:2000/profile')
+      .get('/api/profile')
       .then(result => {
         if (result.status === 200) {
           storePsychologist(result.data.psychologist);

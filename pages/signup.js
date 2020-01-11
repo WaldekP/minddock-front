@@ -69,7 +69,7 @@ const Signup = () => {
           onClick={() =>
             api({
               method: 'POST',
-              url: 'http://localhost:2000/psychologists',
+              url: '/api/psychologists',
               headers: { 'Content-Type': 'application/json;charset=UTF-8' },
               data,
             }).then(result => {
