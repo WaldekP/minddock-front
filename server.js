@@ -1,11 +1,12 @@
 const express = require('express');
 const next = require('next');
 const proxy = require('http-proxy-middleware');
+const routes = require('./routes');
 
 const port = parseInt(process.env.PORT, 10) || 4000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
-const handle = app.getRequestHandler();
+const nextHandler = routes.getRequestHandler(app);
 
 app.prepare().then(() => {
   const server = express();
@@ -20,7 +21,7 @@ app.prepare().then(() => {
   server.use('/api/**', proxy(proxyOptions));
 
   server.all('*', (req, res) => {
-    return handle(req, res);
+    return nextHandler(req, res);
   });
 
   server.listen(port, err => {

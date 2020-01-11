@@ -6,7 +6,7 @@ import { getAppUrl } from '../common/api';
 import PropTypes from 'prop-types';
 import mainPageStyles from '../styles/pages/landing/landing.scss';
 
-const Home = () => {
+const PsychologistsList = ({ psychologists }) => {
   return (
     <div>
       <Head>
@@ -17,9 +17,15 @@ const Home = () => {
       <Nav />
 
       <div className="hero">
-        <h1 className={mainPageStyles.title}>Twój psycholog</h1>
-        <h3>Znajdź psychoterapeute dla siebie</h3>
-        <p>Jakies pierdy i landing page</p>
+        <h1 className={mainPageStyles.title}>Lista psychologów</h1>
+        <h3>Dopasuj psychologa dla siebie</h3>
+        <ul>
+          {psychologists.map(psychologist => (
+            <li>
+              {psychologist.name} {psychologist.surname}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <style jsx>{`
@@ -72,4 +78,18 @@ const Home = () => {
   );
 };
 
-export default Home;
+PsychologistsList.propTypes = {
+  psychologists: PropTypes.array,
+};
+
+PsychologistsList.getInitialProps = async ({ req }) => {
+  const psychologistsList = await fetch(
+    `${getAppUrl(req) || ''}/api/psychologists`
+    // `https://minddock-be.herokuapp.com/psychologists`
+  );
+  return {
+    psychologists: await psychologistsList.json(),
+  };
+};
+
+export default PsychologistsList;
