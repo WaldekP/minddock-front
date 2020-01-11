@@ -4,7 +4,6 @@ import Nav from '../components/nav';
 import fetch from 'isomorphic-unfetch';
 
 const Home = ({ psychologists }) => {
-  console.log('psychologists', psychologists)
   return (
     <div>
       <Head>
@@ -79,10 +78,15 @@ const Home = ({ psychologists }) => {
   );
 };
 
-Home.getInitialProps = async () => {
-  const psychologistsList = await fetch(
-    'http://localhost:4000/api/psychologists'
-  );
+Home.getInitialProps = async ({ req }) => {
+  const host = req
+    ? req.headers['x-forwarded-host'] || req.headers.host
+    : window.location.host;
+
+  const proto = process.env.NODE_ENV === 'development' ? 'http' : 'https'
+
+  const url = `${proto}://${host}`;
+  const psychologistsList = await fetch(`${url || ''}/api/psychologists`);
   return {
     psychologists: await psychologistsList.json(),
   };

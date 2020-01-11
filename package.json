@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development node server.js -p $PORT",
     "build": "next build",
-    "start": "NODE_ENV=production node server/server.js -p $PORT",
+    "start": "NODE_ENV=production node server/server.js -p $PORT"
   },
   "dependencies": {
     "axios": "^0.19.0",
