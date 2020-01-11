@@ -3,9 +3,11 @@ import Head from 'next/head';
 import Nav from '../components/nav';
 import fetch from 'isomorphic-unfetch';
 import { getAppUrl } from '../common/api';
+import PropTypes from 'prop-types';
 
 // const Home = ( ) => {
-const Home = ({ psychologists }) => {
+const Home = ( ) => {
+// const Home = ({ psychologists }) => {
   return (
     <div>
       <Head>
@@ -22,11 +24,11 @@ const Home = ({ psychologists }) => {
           platformie
         </h3>
         <ul>
-          {psychologists.map(psychologist => (
-            <li>
-              {psychologist.name} {psychologist.surname}
-            </li>
-          ))}
+          {/*{psychologists.map(psychologist => (*/}
+          {/*  <li>*/}
+          {/*    {psychologist.name} {psychologist.surname}*/}
+          {/*  </li>*/}
+          {/*))}*/}
         </ul>
       </div>
 
@@ -79,14 +81,17 @@ const Home = ({ psychologists }) => {
     </div>
   );
 };
-
-Home.getInitialProps = async ({ req }) => {
-  const psychologistsList = await fetch(
-    `${getAppUrl(req) || ''}/api/psychologists`
-  );
-  return {
-    psychologists: await psychologistsList.json(),
-  };
+Home.propTypes = {
+  psychologists: PropTypes.array,
 };
+
+// Home.getInitialProps = async ({ req }) => {
+//   const psychologistsList = await fetch(
+//     `${getAppUrl(req) || ''}/api/psychologists`
+//   );
+//   return {
+//     psychologists: await psychologistsList.json(),
+//   };
+// };
 
 export default Home;
