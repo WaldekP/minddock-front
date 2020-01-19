@@ -1,6 +1,22 @@
 @import "../../base/variables";
 
-.title {
-  font-size: $font-size;
-  color: green;
+.container {
+  background: pink;
+  margin: 0;
+  .title {
+    font-size: $font-size;
+    color: orange;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px;
+    grid-gap: 10px;
+    grid-template-rows: 100px;
+    > div {
+      background: green;
+      //width: 100px;
+      //height: 100px;
+    }
+  }
 }
+
