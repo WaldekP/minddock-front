@@ -1,11 +1,10 @@
-import React, { useReducer} from 'react';
-import Head from 'next/head';
-import Nav from '../components/nav';
+import React, { useReducer } from 'react';
 import { useRouter } from 'next/router';
 import { inputReducer } from '../common/reducers';
 import { handleInput } from '../common/utils';
 import { useAuth } from '../common/hooks';
 import { api } from '../common/api';
+import Layout from '../components/layout';
 
 const Login = () => {
   const router = useRouter();
@@ -18,14 +17,7 @@ const Login = () => {
   useAuth(api);
 
   return (
-    <div>
-      <Head>
-        <title>Home</title>
-        <link href="/favicon.ico" rel="icon" />
-      </Head>
-
-      <Nav />
-
+    <Layout title="Twój psycholog-logowanie">
       <div>
         <input
           name="email"
@@ -47,7 +39,7 @@ const Login = () => {
           Zaloguj sie
         </button>
       </div>
-    </div>
+    </Layout>
   );
 };
 

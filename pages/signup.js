@@ -1,11 +1,10 @@
 import React, { useReducer } from 'react';
-import Head from 'next/head';
-import Nav from '../components/nav';
 import axios from 'axios';
 import { inputReducer } from '../common/reducers';
 import { handleInput } from '../common/utils';
 import { useAuth } from '../common/hooks';
 import { useRouter } from 'next/router';
+import Layout from '../components/layout';
 
 const Signup = () => {
   const api = axios.create({
@@ -24,13 +23,7 @@ const Signup = () => {
   useAuth(api);
 
   return (
-    <div>
-      <Head>
-        <title>Home</title>
-        <link href="/favicon.ico" rel="icon" />
-      </Head>
-
-      <Nav />
+    <Layout title="Twój psycholog-dodaj psychologa">
       <h3>Dodaj psychologa</h3>
       <div>
         <label>
@@ -89,7 +82,7 @@ const Signup = () => {
       >
         Wyloguj
       </button>
-    </div>
+    </Layout>
   );
 };
 

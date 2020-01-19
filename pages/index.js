@@ -10,8 +10,14 @@ const Home = () => {
         <h3>Znajdź psychoterapeute dla siebie</h3>
         <div className={landingStyles.grid}>
           <div>A</div>
-          <div>B</div>
           <div>C</div>
+          <div>D</div>
+          <div>D</div>
+          <div>D</div>
+          <div>D</div>
+          <div>D</div>
+          <div>D</div>
+          <div>D</div>
           <div>D</div>
         </div>
       </div>
